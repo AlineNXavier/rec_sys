@@ -15,7 +15,7 @@ def cal_percent(query_sentence, idx, df):
     count = 0
     palavras = []
     for p in query_sentence:
-        if p in df.loc[idx, "resumo"].lower():
+        if p in df.loc[idx, "Resumo"].lower():
             count = count + 1
             palavras.append(p)
             
@@ -49,13 +49,13 @@ def main():
         st.write("Resultado para o modelo BERT")
 
         indices, scr = bert_model.predict(valor_usuario)
-        novos_resultados = df[['resumo', 'autor', 'titulo', 'type']].iloc[indices]
+        novos_resultados = df[['Resumo', 'Autor', 'Titulo', 'Tipo']].iloc[indices]
 
         novos_resultados.reset_index(inplace=True)
-        novos_resultados['words'] = novos_resultados.apply(lambda x: cal_percent(valor_usuario, x['index'], df)[1], axis=1)
-        novos_resultados['scr'] = scr
+        novos_resultados['Palavras'] = novos_resultados.apply(lambda x: cal_percent(valor_usuario, x['ID'], df)[1], axis=1)
+        novos_resultados['Score'] = scr
 
-        st.write(novos_resultados[['index', 'autor', 'titulo', 'type', 'words', 'scr','resumo']])
+        st.write(novos_resultados[['ID', 'Autor', 'Titulo', 'Tipo', 'Palavras', 'Score','Resumo']])
 
 
     #if st.checkbox('Ver resumos'):
