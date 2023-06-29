@@ -1,8 +1,0 @@
-streamlit
-pandas
-sklearn
-numpy
-gensim
-pickle
-transformers 
-torch
