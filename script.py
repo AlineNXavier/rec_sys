@@ -54,7 +54,7 @@ def main():
         novos_resultados.reset_index(inplace=True)
         novos_resultados['Palavras'] = novos_resultados.apply(lambda x: cal_percent(valor_usuario, x['index'], df)[1], axis=1)
         novos_resultados['Score'] = scr
-        novos_resultados.rename(columns={"index": "ID"}, implace = True)
+        novos_resultados.rename(columns={"index": "ID"}, inplace = True)
 
         st.write(novos_resultados[['ID', 'Autor', 'Titulo', 'Tipo', 'Palavras', 'Score','Resumo']])
 
