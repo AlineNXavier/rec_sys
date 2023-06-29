@@ -35,7 +35,7 @@ def main():
     with open(r"bert_model.pkl", "rb") as input_file:
         bert_model = pickle.load(input_file)
     
-    st.title("Recomendação de Trabalhos Cientificos")
+    st.title("Recomendação de Trabalhos Científicos")
 
     df = pd.read_csv('dados_df2.csv',index_col='Unnamed: 0')
 
@@ -46,7 +46,7 @@ def main():
     if st.button("Pesquisar Recomendações", key='bt_rec'):
         # Ação a ser executada quando o botão "Pesquisar Recomendações" for clicado
         
-        st.write("Resultado para o modelo BERT")
+        st.write("Resultado para o modelo BERT:")
 
         indices, scr = bert_model.predict(valor_usuario)
         novos_resultados = df[['Resumo', 'Autor', 'Titulo', 'Tipo']].iloc[indices]
@@ -58,6 +58,7 @@ def main():
 
         st.write(novos_resultados[['ID', 'Autor', 'Titulo', 'Tipo', 'Palavras', 'Score','Resumo']])
 
+        st.caption("Criado por Aline Xavier")
 
     #if st.checkbox('Ver resumos'):
     #    id_resumo = st.text_input("ID do resumo:")
